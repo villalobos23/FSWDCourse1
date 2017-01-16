@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+  <script>
+    function getRandomArbitrary(min, max) {
+       return Math.floor(Math.random() * (max - min) + min);
+    }
+    function game(){
+        var colors = ["blue","red","aqua","yellow","orange","white","black","green"];
+        var selectedColor= getRandomArbitrary(0,colors.length);
+        console.log("selected color"+selectedColor+": "+colors[selectedColor]);
+        var attempts = 1;
+        var hit = false;
+        do{
+          var message = "I am thinking of one of these colors: \n"+
+                        colors.join()+
+                        "What color I am thining of?";
+          var result = prompt(message,"").toLowerCase();
+          var inputIndex = colors.indexOf(result);
+          console.log("inputIndex "+inputIndex);
+          if (colors.includes(result) && inputIndex == selectedColor){
+            document.body.style="background: "+result+";";
+            alert("Congratulations you have guessed the color! \n it took you "+attempts+" to finish the game! \n You can see the color in the background.");
+            hit = true;
+          }else if(result > colors[inputIndex]){
+            alert("Sorry, your guess is not correct! \n Hint: your color is alphabetically lower than mine \n Please try again.");
+          }else if(result < colors[inputIndex]){
+            alert("Sorry, your guess is not correct! \n Hint: your color is alphabetically higher than mine \n Please try again.");
+          }else{
+            alert("Sorry, I don\'t recognize your color");
+          }
+          attempts++;
+        }while(!hit);
+    }
+    window.onload = game;
+  </script>
+</head>
+<body>
+</body>
