@@ -16,14 +16,16 @@
                         "What color I am thining of?";
           var result = prompt(message,"").toLowerCase();
           var inputIndex = colors.indexOf(result);
-          console.log("inputIndex "+inputIndex);
+          console.log(result+" vs "+colors[inputIndex])
           if (colors.includes(result) && inputIndex == selectedColor){
             document.body.style="background: "+result+";";
             alert("Congratulations you have guessed the color! \n it took you "+attempts+" to finish the game! \n You can see the color in the background.");
             hit = true;
-          }else if(result > colors[inputIndex]){
+          }else if(!colors.includes(result)){
+              alert("Sorry, I don\'t recognize your color");
+          }else if(result > colors[selectedColor]){
             alert("Sorry, your guess is not correct! \n Hint: your color is alphabetically lower than mine \n Please try again.");
-          }else if(result < colors[inputIndex]){
+          }else if(result < colors[selectedColor]){
             alert("Sorry, your guess is not correct! \n Hint: your color is alphabetically higher than mine \n Please try again.");
           }else{
             alert("Sorry, I don\'t recognize your color");
