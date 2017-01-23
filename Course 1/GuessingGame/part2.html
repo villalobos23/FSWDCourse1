@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+  <script>
+    function getRandomArbitrary(min, max) {
+       return Math.floor(Math.random() * (max - min) + min);
+    }
+
+    function checkGuess(colors, result, inputIndex, selectedColor,attempts){
+      if (colors.includes(result) && inputIndex == selectedColor){
+        document.body.style="background: "+result+";";
+        alert("Congratulations you have guessed the color! \n it took you "+attempts+" guesses to finish the game! \n You can see the color in the background.");
+        return true;
+      }else if(!colors.includes(result)){
+          alert("Sorry, I don\'t recognize your color");
+      }else if(result < colors[selectedColor]){
+        alert("Sorry, your guess is not correct! \n Hint: your color is alphabetically lower than mine \n Please try again.");
+      }else if(result > colors[selectedColor]){
+        alert("Sorry, your guess is not correct! \n Hint: your color is alphabetically higher than mine \n Please try again.");
+      }else{
+        alert("Sorry, I don\'t recognize your color");
+      }
+      return false;
+    }
+
+    function game(){
+        var colors = ["blue","red","aqua","yellow","orange","white","black","green"];
+        var selectedColor= getRandomArbitrary(0,colors.length);
+        console.log("random selected color"+selectedColor+": "+colors[selectedColor]);
+        var hit = false;
+        var attempts = 1;
+        var message = "";
+        var result = "";
+        var inputIndex = 0;
+        do{
+          message = "I am thinking of one of these colors: \n"+
+                        colors.join()+
+                        "What color I am thining of?";
+          result = prompt(message,"").toLowerCase();
+          inputIndex = colors.indexOf(result);
+          console.log("selected: "+result)
+          hit = checkGuess(colors, result, inputIndex, selectedColor,attempts);
+          attempts++;
+        }while(!hit);
+    }
+    window.onload = game;
+  </script>
+</head>
+<body>
+</body>
