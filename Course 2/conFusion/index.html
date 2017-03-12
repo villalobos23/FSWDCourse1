@@ -105,6 +105,56 @@
             </div>
         </div>
     </div>
+    <div id="reserveModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                  <div class="">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Reserve a Table </h4>
+                  </div>
+                </div>
+                <div class="modal-body">
+                <div >
+                    <form class="form-horizontal" role="form" id="reservation">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Number of Guests</label>
+                            <div class="col-sm-10">
+                                <label for="one-guest">  <input type="radio"  id="one-guest" name="guests">&nbsp;&nbsp;1</label>
+                                <label for="two-guest">  <input type="radio"  id="two-guest" name="guests">&nbsp;&nbsp;2</label>
+                                <label for="three-guest">  <input type="radio"  id="three-guest" name="guests">&nbsp;&nbsp;3</label>
+                                <label for="four-guest">  <input type="radio"  id="four-guest" name="guests">&nbsp;&nbsp;4</label>
+                                <label for="five-guest">  <input type="radio"  id="five-guest" name="guests">&nbsp;&nbsp;5</label>
+                                <label for="six-guest">  <input type="radio"  id="six-guest" name="guests">&nbsp;&nbsp;6</label>
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback has-feedback-right">
+                            <label for="date" class="col-sm-2 control-label">Date and Time</label>
+                            <div class="col-sm-5">
+                                <input type="date" class="form-control" id="date" name="date" placeholder="Date">
+                                <i class="form-control-feedback glyphicon glyphicon-calendar"></i>
+                            </div>
+                            <div class="col-sm-5">
+                                <input type="date" class="form-control" id="date" name="date" placeholder="Time">
+                                <i class="form-control-feedback glyphicon glyphicon-time"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">Send Feedback</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Warning:</strong> Please <a href="tel:85212345678" class="alert-link">call</a> us to reserve for more than six guests.
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
     <header class="jumbotron">
 
         <!-- Main component for a primary marketing message or call to action -->
@@ -122,7 +172,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-2">
                     <p style="padding:40px;"></p>
-                    <a href="#reservation" data-toggle="tooltip" data-placement="bottom" title="Or Call us at +852 12345678" style="width:100%;" class="btn btn-warning">Reserve Table</a>
+                    <a data-toggle="modal" data-target="#reserveModal" class="btn btn-warning">Reserve Table</a>
                 </div>
             </div>
         </div>
@@ -240,47 +290,6 @@
                         </p>
                         <p><a class="btn btn-primary btn-xs" href="#">More &raquo;</a></p>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row row-content">
-            <div class="col-xs-12 col-sm-3">
-                <p style="padding:20px;"></p>
-                <h3 align="center">Reserve a Table</h3>
-            </div>
-            <div class="col-xs-12 col-sm-9">
-                <form class="form-horizontal" role="form" id="reservation">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Number of Guests</label>
-                        <div class="col-sm-10">
-                            <label for="one-guest">  <input type="radio"  id="one-guest" name="guests">&nbsp;&nbsp;1</label>
-                            <label for="two-guest">  <input type="radio"  id="two-guest" name="guests">&nbsp;&nbsp;2</label>
-                            <label for="three-guest">  <input type="radio"  id="three-guest" name="guests">&nbsp;&nbsp;3</label>
-                            <label for="four-guest">  <input type="radio"  id="four-guest" name="guests">&nbsp;&nbsp;4</label>
-                            <label for="five-guest">  <input type="radio"  id="five-guest" name="guests">&nbsp;&nbsp;5</label>
-                            <label for="six-guest">  <input type="radio"  id="six-guest" name="guests">&nbsp;&nbsp;6</label>
-                        </div>
-                    </div>
-                    <div class="form-group has-feedback has-feedback-right">
-                        <label for="date" class="col-sm-2 control-label">Date and Time</label>
-                        <div class="col-sm-5">
-                            <input type="date" class="form-control" id="date" name="date" placeholder="Date">
-                            <i class="form-control-feedback glyphicon glyphicon-calendar"></i>
-                        </div>
-                        <div class="col-sm-5">
-                            <input type="date" class="form-control" id="date" name="date" placeholder="Time">
-                            <i class="form-control-feedback glyphicon glyphicon-time"></i>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary">Send Feedback</button>
-                        </div>
-                    </div>
-                </form>
-                <div class="alert alert-warning alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>Warning:</strong> Please <a href="tel:85212345678" class="alert-link">call</a> us to reserve for more than six guests.
                 </div>
             </div>
         </div>
