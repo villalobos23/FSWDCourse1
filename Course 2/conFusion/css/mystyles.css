@@ -76,6 +76,13 @@ body{
 .carousel {
     background:#1A237E;
 }
+
+#carouselButtons {
+    right:0px;
+    position: absolute;
+    bottom: 0px;
+}
+
 .carousel .item {
   height: 300px;
 }
