@@ -27,22 +27,22 @@
 <body>
 
     <div class="container">
-        <div class="row row-content" ng-controller="dishDetailController as dishDetCtrl">
+        <div class="row row-content" ng-controller="DishDetailController ">
             <div class="col-xs-12">
                 <div>
                   <ul class="media-list tab-pane fade in active">
                       <li class="media" >
                           <div class="media-left media-middle">
                               <a href="#">
-                                  <img class="media-object img-thumbnail" ng-src={{dishDetCtrl.dish.image}} alt="Uthappizza">
+                                  <img class="media-object img-thumbnail" ng-src={{dish.image}} alt="Uthappizza">
                               </a>
                           </div>
                           <div class="media-body">
-                              <h2 class="media-heading">{{dishDetCtrl.dish.name}}
-                                  <span class="label label-danger">{{dishDetCtrl.dish.label}}</span>
-                                  <span class="badge">{{dishDetCtrl.dish.price | currency}}</span>
+                              <h2 class="media-heading">{{dish.name}}
+                                  <span class="label label-danger">{{dish.label}}</span>
+                                  <span class="badge">{{dish.price | currency}}</span>
                               </h2>
-                              <p>{{dishDetCtrl.dish.description}}</p>
+                              <p>{{dish.description}}</p>
 
                           </div>
                       </li>
@@ -51,70 +51,59 @@
             </div>
             <div class="col-xs-9 col-xs-offset-1">
                 <label for="commentFilter">Order By &nbsp;</label>
-                <input type="text" id = "commentFilter" name = "commentFilter" ng-model="dishDetController.filterKey" />
-                <blockquote ng-repeat="comment in dishDetCtrl.dish.comments | orderBy: dishDetController.filterKey">
+                <input type="text" id = "commentFilter" name = "commentFilter" ng-model="filterKey" />
+                <blockquote ng-repeat="comment in dish.comments | orderBy: filterKey">
                   <p>{{comment.comment}}</p>
                   <footer>{{comment.author}} - {{comment.date | date : 'dd/MM/yyyy'}} - {{comment.rating }} star rating</footer>
                 </blockquote>
+            </div>
+            <div class="col-xs-9 col-xs-offset-1" ng-controller="DishCommentController">
+                      <div>
+                          <h3>Your Current Comment:</h3>
+                          <blockquote>
+                            <p>{{dishComment.comment}}</p>
+                            <footer>{{dishComment.author}} - {{dishComment.date | date : 'dd/MM/yyyy'}} - {{dishComment.rating }} star rating</footer>
+                          </blockquote>
+                      </div>
+                <form class="form-horizontal" name="commentForm"
+                		ng-submit="submitComment()" novalidate>
+                    <div class="form-group" ng-class="{ 'has-error' : commentForm.author.$error.required && !commentForm.author.$pristine }">
+                        <label for="author" class="col-sm-2 control-label">First Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="author" name="author" placeholder="Enter First Name" ng-pattern="/^(\D)+$/" ng-model="dishComment.author" required>
+                            <span ng-show="commentForm.author.$error.required && !commentForm.author.$pristine || commentForm.author.$error.pattern" class="help-block">Your Name is required and must be only letters.</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="rating" class="col-sm-2 control-label">Rate the Dish</label>
+                        <div class="col-sm-10">
+                            <div class="btn-group" data-toggle="buttons">
+                              <label ng-repeat="n in [].constructor(5) track by $index" class="btn btn-default center-block" ng-class="{'active': ($index+1) == dishComment.rating}"><input type="radio" name="rating" ng-model="dishComment.rating" value="{{$index+1}}">{{$index+1}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : commentForm.comment.$error.required && !commentForm.comment.$pristine }">
+                        <label for="comment" class="col-sm-2 control-label">Tell us what you think</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="comment" name="comment" rows="12" ng-model="dishComment.comment" required></textarea>
+                            <span ng-show="commentForm.comment.$error.required && !commentForm.comment.$pristine" class="help-block">Your comment cannot be blank.</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary" ng-disabled="commentForm.$invalid">Submit Comment</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
     </div>
 
+<!-- build:js scripts/main.js -->
     <script src="../bower_components/angular/angular.min.js"></script>
-    <script>
-
-        var app = angular.module('confusionApp',[]);
-
-        app.controller('dishDetailController', function() {
-            this.filterKey = "";
-            var dish={
-                          name:'Uthapizza',
-                          image: 'images/uthapizza.png',
-                          category: 'mains',
-                          label:'Hot',
-                          price:'4.99',
-                          description:'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.',
-                           comments: [
-                               {
-                                   rating:5,
-                                   comment:"Imagine all the eatables, living in conFusion!",
-                                   author:"John Lemon",
-                                   date:"2012-10-16T17:57:28.556094Z"
-                               },
-                               {
-                                   rating:4,
-                                   comment:"Sends anyone to heaven, I wish I could get my mother-in-law to eat it!",
-                                   author:"Paul McVites",
-                                   date:"2014-09-05T17:57:28.556094Z"
-                               },
-                               {
-                                   rating:3,
-                                   comment:"Eat it, just eat it!",
-                                   author:"Michael Jaikishan",
-                                   date:"2015-02-13T17:57:28.556094Z"
-                               },
-                               {
-                                   rating:4,
-                                   comment:"Ultimate, Reaching for the stars!",
-                                   author:"Ringo Starry",
-                                   date:"2013-12-02T17:57:28.556094Z"
-                               },
-                               {
-                                   rating:2,
-                                   comment:"It's your birthday, we're gonna party!",
-                                   author:"25 Cent",
-                                   date:"2011-12-02T17:57:28.556094Z"
-                               }
-
-                           ]
-                    };
-
-            this.dish = dish;
-
-        });
-
-    </script>
+    <script src="scripts/app.js"></script>
+<!-- endbuild -->
 
 </body>
 
