@@ -24,13 +24,13 @@ angular.module('confusionApp')
 
         this.getPromotion = function (id) {
             var currentIndex = 0;
-            for (var currentIndex = 0; currentIndex < promotions.length; currentIndex++) {
-                if (promotions[currentIndex]._id == id) {
+            for (currentIndex = 0; currentIndex < promotions.length; currentIndex++) {
+                if (promotions[currentIndex]._id === id) {
                     return promotions[currentIndex];
                 }
             }
             return null;
-        }
+        };
 
     }])
 

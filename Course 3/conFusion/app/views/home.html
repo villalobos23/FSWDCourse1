@@ -10,7 +10,7 @@
             </div>
             <div class="media" ng-if="showDish">
                 <div class="media-left media-middle">
-                    <a ui-sref="app.dishdetails({id: featuredDish._id})">
+                    <a ui-sref="app.dishdetails({id: featuredDish.id})">
                         <img class="media-object img-thumbnail" ng-src={{featuredDish.image}} alt="{{featuredDish.name}}">
                     </a>
                 </div>
